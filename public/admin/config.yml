@@ -86,20 +86,20 @@ collections:
         summary: "{{fields.label}}"
         hint: "Add one row per reference. Each appears collapsed until a reader clicks it."
         fields:
-      - { label: "Reference name", name: "label", widget: "string" }
-      - {
-          label: "Citation (optional)",
-          name: "citation",
-          widget: "string",
-          required: false,
-          hint: "e.g. author, journal, year",
-        }
-      - {
-          label: "PDF",
-          name: "file",
-          widget: "file",
-          media_library: { config: { max_file_size: 20000000 } },
-        }
+          - { label: "Reference name", name: "label", widget: "string" }
+          - {
+              label: "Citation (optional)",
+              name: "citation",
+              widget: "string",
+              required: false,
+              hint: "e.g. author, journal, year",
+            }
+          - {
+              label: "PDF",
+              name: "file",
+              widget: "file",
+              media_library: { config: { max_file_size: 20000000 } },
+            }
       - {
           label: "Survey link (Google Doc/Form)",
           name: "surveyUrl",
