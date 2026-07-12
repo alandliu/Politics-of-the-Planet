@@ -7,7 +7,8 @@ import ReferenceSection from "@/components/ReferenceSection";
 import SectionRail from "@/components/SectionRail";
 
 export function generateStaticParams() {
-  return getAllWritings().map((w) => ({ slug: w.slug }));
+  const params = getAllWritings().map((w) => ({ slug: w.slug }));
+  return params.length > 0 ? params : [{ slug: "__none" }];
 }
 
 export function generateMetadata({ params }) {
