@@ -1,0 +1,118 @@
+backend:
+  name: git-gateway
+  branch: main
+
+
+local_backend: true
+
+media_folder: "public/uploads/entries"
+public_folder: "/uploads/entries"
+
+collections:
+  - name: "writings"
+    label: "Writings"
+    label_singular: "Writing"
+    folder: "content/writings"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}}  —  {{date}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - {
+          label: "One-line summary",
+          name: "summary",
+          widget: "string",
+          required: false,
+          hint: "Shown under the title on the home page.",
+        }
+      - {
+          label: "Student explainer (PDF)",
+          name: "explainerPdf",
+          widget: "file",
+          required: false,
+          media_library: { config: { max_file_size: 20000000 } },
+          hint: "The plain-language / kid-friendly PDF.",
+        }
+      - {
+          label: "Policy brief / research paper (PDF)",
+          name: "briefPdf",
+          widget: "file",
+          required: false,
+          media_library: { config: { max_file_size: 20000000 } },
+        }
+      - {
+          label: "Slides (PDF)",
+          name: "slidesPdf",
+          widget: "file",
+          required: false,
+          media_library: { config: { max_file_size: 20000000 } },
+          hint: "Export the deck to PDF (File > Download > PDF) and upload it.",
+        }
+      - label: "References (PDFs)"
+        name: "references"
+        widget: "list"
+        required: false
+        label_singular: "Reference"
+        summary: "{{fields.label}}"
+        hint: "Add one row per reference. Each appears collapsed until a reader clicks it."
+        fields:
+      - { label: "Reference name", name: "label", widget: "string" }
+      - {
+          label: "Citation (optional)",
+          name: "citation",
+          widget: "string",
+          required: false,
+          hint: "e.g. author, journal, year",
+        }
+      - {
+          label: "PDF",
+          name: "file",
+          widget: "file",
+          media_library: { config: { max_file_size: 20000000 } },
+        }
+      - {
+          label: "Survey link (Google Doc/Form)",
+          name: "surveyUrl",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Survey button label",
+          name: "surveyLabel",
+          widget: "string",
+          required: false,
+          default: "Share what you think",
+        }
+
+  - name: "pages"
+    label: "Pages"
+    media_folder: "/public/uploads/about"
+    public_folder: "/uploads/about"
+    files:
+      - name: "about"
+        label: "About page"
+        file: "content/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - {
+              label: "Photo",
+              name: "portrait",
+              widget: "image",
+              required: false,
+              hint: "Optional headshot, shown at the top.",
+            }
+          - {
+              label: "Body",
+              name: "body",
+              widget: "markdown",
+              hint: "Write freely. Use the image button in the toolbar to drop pictures into the text.",
+            }
+          - label: "Links"
+            name: "links"
+            widget: "list"
+            required: false
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
